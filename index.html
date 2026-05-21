@@ -178,7 +178,7 @@ body { background:#030308; overflow:hidden; font-family:'Courier New',monospace;
 <!-- Gesture panel -->
 <div id="gesture-panel">
   <div class="gp-title">CURRENT LETTER</div>
-  <div class="gp-letter" id="gp-letter" style="color:#00ffff">S</div>
+  <div class="gp-letter" id="gp-letter" style="color:#00ffff">D</div>
   <div class="gp-row"><div class="gp-key">SWIPE ←→</div><span>NEXT LETTER</span></div>
   <div class="gp-row"><div class="gp-key">FIST</div><span>NEXT LETTER</span></div>
   <div class="gp-row"><div class="gp-key">OPEN</div><span>EXPLODE PARTICLES</span></div>
@@ -186,16 +186,15 @@ body { background:#030308; overflow:hidden; font-family:'Courier New',monospace;
 </div>
 
 <!-- Big ghost letter bg -->
-<div id="current-letter">S</div>
+<div id="current-letter">D</div>
 
-<!-- Letter nav dots -->
+<!-- Letter nav dots — 5 dots for D I V Y A -->
 <div id="letter-display">
   <div class="letter-dot active" id="dot-0"></div>
   <div class="letter-dot" id="dot-1"></div>
   <div class="letter-dot" id="dot-2"></div>
   <div class="letter-dot" id="dot-3"></div>
   <div class="letter-dot" id="dot-4"></div>
-  <div class="letter-dot" id="dot-5"></div>
 </div>
 
 <div id="gflash"></div>
@@ -266,53 +265,47 @@ window.addEventListener('resize', () => {
 });
 
 // ============================================================
-//  LETTER DEFINITIONS  (S I M R A N)
+//  LETTER DEFINITIONS  (D I V Y A)
 // ============================================================
-const LETTERS = ['S','I','M','R','A','N'];
+const LETTERS = ['D','I','V','Y','A'];
 
 // Color palette per letter
 const LETTER_COLORS = {
-  S: [[0,1,1],[0,0.7,1],[0.2,0.9,1]],          
-  I: [[0.3,0.6,1],[0.5,0.8,1],[0.2,0.4,1]],     
-  M: [[0.8,0,1],[0.6,0,1],[1,0,0.8]],           
-  R: [[1,0.2,0],[1,0.5,0],[1,0.8,0]],           
-  A: [[0,1,0.4],[0,0.8,0.5],[0.2,1,0.6]],       
-  N: [[1,0,0.5],[1,0,0.3],[0.8,0,0.8]],         
+  D: [[0,1,1],[0,0.7,1],[0.2,0.9,1]],
+  I: [[0.3,0.6,1],[0.5,0.8,1],[0.2,0.4,1]],
+  V: [[0.8,0,1],[0.6,0,1],[1,0,0.8]],
+  Y: [[1,0.2,0],[1,0.5,0],[1,0.8,0]],
+  A: [[0,1,0.4],[0,0.8,0.5],[0.2,1,0.6]],
 };
 
 // Stroke paths
 const LETTER_STROKES = {
-  S:[
-    [[ 0.6,1.2],[0.0,1.2],[-0.6,1.2],[-0.6,0.6],[-0.6,0.0]],[[-0.6,0.0],[0.0,0.0],[0.6,0.0]],
-    [[ 0.6,0.0],[0.6,-0.6],[0.6,-1.2],[0.0,-1.2],[-0.6,-1.2]],
+  D: [
+    // Vertical spine on left
+    [[-0.6, 1.2],[-0.6, 0.0],[-0.6,-1.2]],
+    // Curve: top → right bulge → bottom
+    [[-0.6, 1.2],[ 0.0, 1.2],[ 0.55, 0.8],[ 0.7, 0.3],[ 0.7,-0.3],[ 0.55,-0.8],[ 0.0,-1.2],[-0.6,-1.2]],
   ],
   I: [
-    [[-0.4, 1.2],[ 0.4, 1.2]],                    
-    [[ 0.0, 1.2],[ 0.0, 0.0],[ 0.0,-1.2]],        
-    [[-0.4,-1.2],[ 0.4,-1.2]],                    
+    [[-0.4, 1.2],[ 0.4, 1.2]],
+    [[ 0.0, 1.2],[ 0.0, 0.0],[ 0.0,-1.2]],
+    [[-0.4,-1.2],[ 0.4,-1.2]],
   ],
-  M: [
-    [[-0.6,-1.2],[-0.6,1.2]],
-    [[-0.6,1.2],[0.0,0.0],[0.6,1.2]],
-    [[ 0.6,1.2],[0.6,-1.2]],
+  V: [
+    [[-0.6, 1.2],[ 0.0,-1.2]],
+    [[ 0.6, 1.2],[ 0.0,-1.2]],
   ],
-  R: [
-    [[-0.6, 1.2],[-0.6, 0.0],[-0.6,-1.2]],        
-    [[-0.6, 1.2],[ 0.2, 1.2],[ 0.6, 0.8],[ 0.6, 0.4],[ 0.2, 0.0],[-0.6, 0.0]], 
-    [[-0.1, 0.0],[ 0.6,-1.2]],                    
+  Y: [
+    [[-0.6, 1.2],[ 0.0, 0.0]],
+    [[ 0.6, 1.2],[ 0.0, 0.0]],
+    [[ 0.0, 0.0],[ 0.0,-1.2]],
   ],
-  A:[
-    [[-0.6,-1.2],[0.0,1.2],[0.6,-1.2]],
-    [[-0.3,-0.2],[0.3,-0.2]],
+  A: [
+    [[-0.6,-1.2],[ 0.0, 1.2],[ 0.6,-1.2]],
+    [[-0.3,-0.2],[ 0.3,-0.2]],
   ],
-  N: [
-    [[-0.6,-1.2],[-0.6,1.2]],
-    [[-0.6,1.2],[0.6,-1.2]],
-    [[0.6,-1.2],[0.6,1.2]],
-  ]
 };
 
-// ... (Rest of the logic remains the same)
 // Sample a single stroke (polyline) into N evenly-spaced points
 function sampleStroke(pts, n) {
   const result =[];
@@ -342,7 +335,7 @@ function sampleStroke(pts, n) {
 }
 
 const PARTICLE_COUNT = 7000;
-const LETTER_SCALE   = 3.2;   
+const LETTER_SCALE   = 3.2;
 
 function buildLetterTargets(letter) {
   const strokes = LETTER_STROKES[letter];
@@ -388,7 +381,7 @@ const positions  = new Float32Array(PARTICLE_COUNT*3);
 const targets    = new Float32Array(PARTICLE_COUNT*3);
 const velocities = new Float32Array(PARTICLE_COUNT*3);
 const colors     = new Float32Array(PARTICLE_COUNT*3);
-const baseColors = new Float32Array(PARTICLE_COUNT*3); 
+const baseColors = new Float32Array(PARTICLE_COUNT*3);
 const sizes      = new Float32Array(PARTICLE_COUNT);
 
 for (let i=0;i<PARTICLE_COUNT;i++){
@@ -439,7 +432,7 @@ const SWIPE_COOL   = 38;
 const SWIPE_MAX    = 20;
 let frameTime         = 0;
 let autoLetterCool    = 0;
-const AUTO_FRAMES     = 420;  
+const AUTO_FRAMES     = 420;
 const LERP   = 0.038;
 const FRIC   = 0.91;
 const REPELF = 0.32;
@@ -455,7 +448,8 @@ function setLetter(idx, label) {
   geo.attributes.color.needsUpdate = true;
   gpLetter.textContent = letter;
   bigLetter.textContent = letter;
-  const mainColor =['#00ffff','#4488ff','#b400ff','#ff6600','#00ff88','#ff0055'][currentIdx];
+  // 5 colors for D I V Y A
+  const mainColor =['#00ffff','#4488ff','#b400ff','#ff6600','#00ff88'][currentIdx];
   gpLetter.style.color  = mainColor;
   bigLetter.style.color = mainColor;
   bigLetter.style.opacity = '0.07';
@@ -485,7 +479,7 @@ function renderTrail() {
     const d=swipeTrail[i];
     const alpha=(i/swipeTrail.length)*0.85;
     const r=3+(i/swipeTrail.length)*10;
-    const mainColor=['rgba(0,255,255','rgba(68,136,255','rgba(180,0,255','rgba(255,120,0','rgba(0,255,140','rgba(255,0,100'][currentIdx];
+    const mainColor=['rgba(0,255,255','rgba(68,136,255','rgba(180,0,255','rgba(255,120,0','rgba(0,255,140'][currentIdx];
     const g2=swipeCtx.createRadialGradient(d.x,d.y,0,d.x,d.y,r*2.5);
     g2.addColorStop(0,`${mainColor},${alpha})`);
     g2.addColorStop(1,`${mainColor},0)`);
@@ -561,7 +555,18 @@ function animate() {
   }
   geo.attributes.position.needsUpdate=true; geo.attributes.color.needsUpdate=true; geo.attributes.size.needsUpdate=true; renderer.render(scene,camera);
 }
-const steps=[[12,'BOOTING CORE...'],[28,'BUILDING S...'],[42,'BUILDING I...'],[55,'BUILDING M...'],[66,'BUILDING R...'],[77,'BUILDING A...'],[88,'BUILDING N...'],[96,'STARTING MEDIAPIPE...'],[100,'READY']];
+
+// Loading steps — 5 letters now: D I V Y A
+const steps=[
+  [12,'BOOTING CORE...'],
+  [28,'BUILDING D...'],
+  [44,'BUILDING I...'],
+  [60,'BUILDING V...'],
+  [76,'BUILDING Y...'],
+  [90,'BUILDING A...'],
+  [96,'STARTING MEDIAPIPE...'],
+  [100,'READY']
+];
 let si=0;
 function advLoad(){ if(si>=steps.length)return; const [p,m]=steps[si++]; ldBar.style.width=p+'%'; ldStatus.textContent=m; if(si<steps.length) setTimeout(advLoad, 350+Math.random()*250); }
 advLoad(); setLetter(0, null); animate();
