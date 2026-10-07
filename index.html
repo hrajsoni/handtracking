@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>KHUSHI — Quantum Particle Hand Tracking</title>
+<title>For Khushi — You Are My Universe ❤️</title>
 
 <!-- Fonts & Libraries -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
@@ -18,13 +18,13 @@
 
 <style>
 :root {
-  --primary: #00f3ff;
-  --secondary: #b537f2;
-  --accent: #ff2a9d;
-  --bg-deep: #030308;
-  --glass-bg: rgba(7, 10, 20, 0.65);
-  --glass-border: rgba(0, 243, 255, 0.2);
-  --active-color: #00f3ff;
+  --primary: #ff4d79;
+  --secondary: #e11d48;
+  --accent: #fda4af;
+  --bg-deep: #050208;
+  --glass-bg: rgba(18, 7, 18, 0.65);
+  --glass-border: rgba(255, 77, 121, 0.25);
+  --active-color: #ff4d79;
 }
 
 * {
@@ -40,7 +40,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   background: var(--bg-deep);
-  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
   color: #fff;
   touch-action: none;
 }
@@ -71,13 +71,13 @@ html, body {
   position: fixed;
   top: env(safe-area-inset-top, 16px);
   right: 16px;
-  width: 130px;
-  height: 98px;
+  width: 110px;
+  height: 82px;
   z-index: 100;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px rgba(0, 243, 255, 0.15), inset 0 0 12px rgba(0, 243, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(255, 77, 121, 0.15);
   background: #000;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -86,22 +86,18 @@ html, body {
   #webcam-wrap {
     top: 20px;
     right: 24px;
-    width: 168px;
-    height: 126px;
-    border-radius: 14px;
+    width: 148px;
+    height: 110px;
   }
 }
 
 #webcam-wrap.minimized {
-  width: 44px;
-  height: 44px;
-  border-radius: 22px;
-  opacity: 0.8;
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
 }
 
 #webcam-wrap.minimized #webcam-video,
-#webcam-wrap.minimized::before,
-#webcam-wrap.minimized::after,
 #webcam-wrap.minimized .cam-badge {
   display: none !important;
 }
@@ -116,27 +112,8 @@ html, body {
   height: 100%;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-}
-
-#webcam-wrap::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--primary), transparent);
-  animation: scan 2.8s linear infinite;
-  z-index: 10;
-  pointer-events: none;
-}
-
-@keyframes scan {
-  0% { top: 0; opacity: 1; }
-  100% { top: 100%; opacity: 0; }
 }
 
 #webcam-video {
@@ -149,30 +126,29 @@ html, body {
 
 .cam-badge {
   position: absolute;
-  bottom: 6px;
-  left: 8px;
+  bottom: 5px;
+  left: 7px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(6px);
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 20px;
   font-size: 8px;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   font-weight: 700;
   color: var(--primary);
-  border: 1px solid rgba(0, 243, 255, 0.3);
-  z-index: 11;
+  border: 1px solid rgba(255, 77, 121, 0.3);
   pointer-events: none;
 }
 
 .cam-pip-toggle {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -199,57 +175,48 @@ html, body {
   pointer-events: none;
 }
 
-@media (min-width: 768px) {
-  #status-bar {
-    top: 22px;
-    left: 24px;
-    gap: 8px;
-  }
-}
-
 .brand-badge {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   padding: 6px 14px;
   border-radius: 100px;
   backdrop-filter: blur(14px);
   width: fit-content;
+  box-shadow: 0 4px 20px rgba(255, 77, 121, 0.12);
 }
 
 .brand-title {
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 3px;
-  background: linear-gradient(135deg, #fff 30%, var(--primary));
+  letter-spacing: 2.5px;
+  background: linear-gradient(135deg, #fff 20%, #ff4d79 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .brand-tag {
-  font-size: 8px;
-  letter-spacing: 1.5px;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #fda4af;
   padding-left: 6px;
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .status-pill {
   display: flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(0, 0, 0, 0.5);
+  gap: 6px;
+  background: rgba(15, 6, 18, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 4px 10px;
   border-radius: 100px;
   backdrop-filter: blur(10px);
   font-size: 9px;
-  letter-spacing: 1.2px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.7);
   width: fit-content;
-  font-family: 'JetBrains Mono', monospace;
 }
 
 .s-dot {
@@ -257,107 +224,93 @@ html, body {
   height: 6px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
-  flex-shrink: 0;
   transition: all 0.3s;
 }
 
 .s-dot.active {
   background: var(--primary);
   box-shadow: 0 0 8px var(--primary);
-  animation: pulseDot 1.6s infinite ease-in-out;
-}
-
-.s-dot.hand-active {
-  background: var(--secondary);
-  box-shadow: 0 0 10px var(--secondary);
-}
-
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.7); }
 }
 
 /* ============================================================
-   CENTER BACKGROUND GHOST LETTER
+   ROMANTIC SUBTITLE FOR CURRENT LETTER
    ============================================================ */
+#romantic-quote-box {
+  position: fixed;
+  top: calc(50% + min(22vw, 160px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+  pointer-events: none;
+  width: 90%;
+  max-width: 480px;
+}
+
+#romantic-quote {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(22px, 5.5vw, 32px);
+  color: #ffe4e6;
+  text-shadow: 0 0 16px rgba(255, 77, 121, 0.6);
+  opacity: 0.95;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  line-height: 1.3;
+}
+
 #current-letter-ghost {
   position: fixed;
-  top: 50%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: min(42vw, 320px);
+  font-size: min(44vw, 320px);
   font-weight: 900;
   font-family: 'Plus Jakarta Sans', sans-serif;
   pointer-events: none;
   z-index: 2;
-  opacity: 0.04;
+  opacity: 0.05;
   color: var(--active-color);
   transition: opacity 0.5s ease, color 0.5s ease;
-  user-select: none;
-  line-height: 1;
 }
 
-/* ============================================================
-   INTERACTIVE HAND POINTER / TARGET RING
-   ============================================================ */
+/* Hand Pointer */
 #hand-pointer {
   position: fixed;
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
   border: 1.8px solid var(--primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 95;
   transform: translate(-50%, -50%);
   display: none;
-  box-shadow: 0 0 20px rgba(0, 243, 255, 0.4), inset 0 0 10px rgba(0, 243, 255, 0.2);
-  transition: border-color 0.25s, transform 0.08s ease-out;
+  box-shadow: 0 0 24px rgba(255, 77, 121, 0.45);
 }
 
 #hand-pointer::after {
-  content: '';
+  content: '❤️';
   position: absolute;
   inset: 50%;
-  width: 8px;
-  height: 8px;
   transform: translate(-50%, -50%);
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 12px #fff;
+  font-size: 14px;
 }
 
-#hand-pointer .ring-outer {
-  position: absolute;
-  inset: -8px;
-  border: 1px dashed rgba(255, 255, 255, 0.35);
-  border-radius: 50%;
-  animation: rotateRing 8s linear infinite;
-}
-
-@keyframes rotateRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* ============================================================
-   GESTURE FLASH NOTICE
-   ============================================================ */
+/* Love Flash Notice */
 #gesture-flash {
   position: fixed;
-  top: 44%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.9);
-  padding: 10px 24px;
+  padding: 8px 22px;
   border-radius: 40px;
-  background: rgba(10, 10, 25, 0.75);
-  border: 1px solid var(--accent);
+  background: rgba(25, 6, 20, 0.85);
+  border: 1px solid var(--primary);
   backdrop-filter: blur(16px);
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   color: #fff;
-  text-shadow: 0 0 16px var(--accent);
-  box-shadow: 0 0 30px rgba(255, 42, 157, 0.3);
+  text-shadow: 0 0 14px var(--primary);
+  box-shadow: 0 0 30px rgba(255, 77, 121, 0.35);
   z-index: 120;
   pointer-events: none;
   opacity: 0;
@@ -370,34 +323,33 @@ html, body {
 }
 
 /* ============================================================
-   BOTTOM NAVIGATION BAR: KHUSHI CHIPS
+   BOTTOM NAVIGATION BAR: KHUSHI CHIPS + HEART FINALE
    ============================================================ */
 #nav-container {
   position: fixed;
-  bottom: env(safe-area-inset-bottom, 20px);
+  bottom: env(safe-area-inset-bottom, 18px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  width: calc(100% - 32px);
+  gap: 10px;
+  width: calc(100% - 28px);
   max-width: 480px;
-  pointer-events: auto;
 }
 
 .letters-dock {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  padding: 8px 12px;
+  padding: 7px 10px;
   border-radius: 100px;
   backdrop-filter: blur(20px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
   width: 100%;
 }
 
@@ -416,42 +368,18 @@ html, body {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-@media (min-width: 400px) {
-  .letter-btn {
-    height: 52px;
-    font-size: 18px;
-  }
-}
-
-.letter-btn:active {
-  transform: scale(0.92);
 }
 
 .letter-btn.active {
   color: #fff;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 77, 121, 0.22);
   border-color: currentColor;
-  box-shadow: 0 0 20px currentColor;
+  box-shadow: 0 0 18px currentColor;
+  transform: scale(1.06);
 }
 
-.letter-btn .indicator-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: currentColor;
-  margin-top: 3px;
-  opacity: 0.3;
-  transition: all 0.3s;
-}
-
-.letter-btn.active .indicator-dot {
-  opacity: 1;
-  box-shadow: 0 0 6px currentColor;
-  transform: scale(1.3);
+.letter-btn.heart-btn {
+  font-size: 18px;
 }
 
 .actions-dock {
@@ -460,123 +388,101 @@ html, body {
   justify-content: space-between;
   gap: 8px;
   width: 100%;
-  padding: 0 4px;
+  padding: 0 2px;
 }
 
 .quick-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
+  gap: 5px;
+  padding: 7px 14px;
   border-radius: 100px;
-  background: rgba(15, 20, 35, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.75);
+  background: rgba(28, 8, 24, 0.75);
+  border: 1px solid var(--glass-border);
+  color: #ffe4e6;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.8px;
   cursor: pointer;
   backdrop-filter: blur(10px);
   transition: all 0.2s;
 }
 
 .quick-btn:hover, .quick-btn:active {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-  border-color: var(--primary);
-}
-
-.quick-btn svg {
-  width: 13px;
-  height: 13px;
-  fill: currentColor;
+  background: rgba(255, 77, 121, 0.3);
+  border-color: #ff4d79;
 }
 
 /* ============================================================
-   COLLAPSIBLE GESTURE GUIDE / TELEMETRY
+   ROMANTIC LOVE NOTE MODAL
    ============================================================ */
-#hud-drawer {
+#love-letter-modal {
   position: fixed;
-  bottom: calc(env(safe-area-inset-bottom, 20px) + 125px);
-  left: 16px;
-  z-index: 90;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: all 0.3s ease;
-}
-
-@media (max-width: 600px) {
-  #hud-drawer {
-    left: 12px;
-    bottom: calc(env(safe-area-inset-bottom, 20px) + 120px);
-  }
-}
-
-.hud-panel {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  padding: 12px 14px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  font-size: 10px;
-  letter-spacing: 0.8px;
-  color: rgba(255, 255, 255, 0.7);
-  min-width: 175px;
-  transition: max-height 0.3s ease, opacity 0.3s;
-}
-
-.hud-title {
+  inset: 0;
+  z-index: 250;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: 9px;
-  letter-spacing: 1.8px;
-  color: var(--primary);
-  font-weight: 700;
-  margin-bottom: 8px;
-  text-transform: uppercase;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(5, 2, 8, 0.82);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-.hud-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+#love-letter-modal.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.hud-tag {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 2px 6px;
-  border-radius: 4px;
+.letter-card {
+  background: radial-gradient(circle at top, rgba(45, 12, 35, 0.85), rgba(18, 5, 18, 0.95));
+  border: 1px solid rgba(255, 150, 180, 0.3);
+  box-shadow: 0 20px 60px rgba(255, 77, 121, 0.25);
+  border-radius: 20px;
+  padding: 30px 24px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#love-letter-modal.open .letter-card {
+  transform: translateY(0) scale(1);
+}
+
+.letter-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  color: #ffe4e6;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.letter-body {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  line-height: 1.5;
+  color: #fce7f3;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.letter-close-btn {
+  background: linear-gradient(135deg, #ff4d79, #e11d48);
+  border: none;
   color: #fff;
-  font-size: 8px;
-}
-
-.hud-val {
-  color: var(--primary);
-  font-weight: 600;
-}
-
-#hud-toggle-btn {
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.6);
-  padding: 4px 10px;
-  border-radius: 100px;
-  font-size: 9px;
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 13px;
   letter-spacing: 1px;
   cursor: pointer;
-  width: fit-content;
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(255, 77, 121, 0.4);
 }
 
-/* ============================================================
-   LOADING SCREEN
-   ============================================================ */
+/* Loading */
 #loading-screen {
   position: fixed;
   inset: 0;
@@ -585,8 +491,8 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, #0a0d1a 0%, #030308 100%);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  background: radial-gradient(circle at center, #1a0815 0%, #050208 100%);
+  transition: opacity 0.75s ease;
   padding: 24px;
 }
 
@@ -598,75 +504,42 @@ html, body {
 .loader-brand {
   font-size: min(15vw, 68px);
   font-weight: 900;
-  letter-spacing: min(3vw, 14px);
-  background: linear-gradient(135deg, #fff 0%, #00f3ff 50%, #b537f2 100%);
+  letter-spacing: 12px;
+  background: linear-gradient(135deg, #fff 0%, #ff4d79 50%, #fda4af 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
-  text-align: center;
+  margin-bottom: 6px;
 }
 
 .loader-subtitle {
-  font-size: 11px;
-  letter-spacing: 5px;
-  color: rgba(255, 255, 255, 0.38);
-  margin-bottom: 36px;
-  text-transform: uppercase;
-  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: #fda4af;
+  margin-bottom: 30px;
 }
 
 .loader-progress-wrap {
-  width: min(75vw, 280px);
+  width: min(75vw, 260px);
   height: 3px;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   overflow: hidden;
-  position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .loader-progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #00f3ff, #b537f2);
-  box-shadow: 0 0 16px #00f3ff;
-  border-radius: 10px;
+  background: linear-gradient(90deg, #ff4d79, #fda4af);
+  box-shadow: 0 0 16px #ff4d79;
   transition: width 0.3s ease;
 }
 
 .loader-status-msg {
-  font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   letter-spacing: 2px;
   color: var(--primary);
-  animation: pulseBlink 1.2s infinite ease-in-out;
 }
-
-@keyframes pulseBlink {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 0.3; }
-}
-
-.loader-hint {
-  margin-top: 32px;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 1px;
-  text-align: center;
-  max-width: 290px;
-  line-height: 1.5;
-}
-
-.corner-accent {
-  position: fixed;
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-  z-index: 40;
-  opacity: 0.4;
-}
-.ca-tl { top: 12px; left: 12px; border-top: 1.5px solid var(--primary); border-left: 1.5px solid var(--primary); }
-.ca-br { bottom: 12px; right: 12px; border-bottom: 1.5px solid var(--primary); border-right: 1.5px solid var(--primary); }
 </style>
 </head>
 
@@ -683,9 +556,9 @@ html, body {
   <video id="webcam-video" autoplay muted playsinline></video>
   <div class="cam-badge">
     <div class="s-dot active" style="width:4px;height:4px;"></div>
-    <span>VISION LIVE</span>
+    <span>LIVE</span>
   </div>
-  <div class="cam-pip-toggle" id="btn-cam-pip" title="Minimize / Expand">_</div>
+  <div class="cam-pip-toggle" id="btn-cam-pip">_</div>
   <div class="cam-mini-icon" id="cam-mini-icon">📹</div>
 </div>
 
@@ -693,129 +566,73 @@ html, body {
 <div id="status-bar">
   <div class="brand-badge">
     <div class="brand-title">KHUSHI</div>
-    <div class="brand-tag">QUANTUM PARTICLES</div>
+    <div class="brand-tag">MY UNIVERSE ✨</div>
   </div>
   <div class="status-pill">
-    <div class="s-dot active" id="dot-status"></div>
-    <span id="txt-status">SYSTEM ONLINE</span>
-  </div>
-  <div class="status-pill">
-    <div class="s-dot" id="dot-tracking"></div>
+    <div class="s-dot active"></div>
     <span id="txt-tracking">AWAITING HAND / TOUCH</span>
   </div>
 </div>
 
 <div id="current-letter-ghost">K</div>
 
-<!-- Exact Hand Pointer Ring -->
-<div id="hand-pointer">
-  <div class="ring-outer"></div>
+<!-- Romantic Subtitle Whisper Box -->
+<div id="romantic-quote-box">
+  <div id="romantic-quote">Kindest soul in my entire universe</div>
 </div>
+
+<!-- Hand Pointer -->
+<div id="hand-pointer"></div>
 
 <div id="gesture-flash">PINCH ZOOM</div>
 
-<!-- Telemetry & Gesture Guide -->
-<div id="hud-drawer">
-  <div class="hud-panel" id="hud-panel">
-    <div class="hud-title">
-      <span>GESTURE TELEMETRY</span>
-      <span id="hud-fps" style="color:rgba(255,255,255,0.4)">60 FPS</span>
-    </div>
-    <div class="hud-row">
-      <span class="hud-tag">POINTER</span>
-      <span class="hud-val" id="val-pointer">IDLE</span>
-    </div>
-    <div class="hud-row">
-      <span class="hud-tag">PINCH</span>
-      <span class="hud-val" id="val-pinch">—</span>
-    </div>
-    <div class="hud-row">
-      <span class="hud-tag">FIST</span>
-      <span class="hud-val" id="val-fist">NO</span>
-    </div>
-    <div class="hud-row">
-      <span class="hud-tag">OPEN PALM</span>
-      <span class="hud-val" id="val-open">NO</span>
-    </div>
-    <div class="hud-row">
-      <span class="hud-tag">SWIPE SPEED</span>
-      <span class="hud-val" id="val-swipe">—</span>
-    </div>
-  </div>
-  <button id="hud-toggle-btn">TOGGLE STATS</button>
-</div>
-
-<!-- Bottom Navigation: KHUSHI letter dock & actions -->
+<!-- Bottom Navigation: K - H - U - S - H - I - ❤️ -->
 <div id="nav-container">
   <div class="letters-dock">
-    <button class="letter-btn active" data-index="0" id="btn-letter-0">
-      <span>K</span>
-      <div class="indicator-dot"></div>
-    </button>
-    <button class="letter-btn" data-index="1" id="btn-letter-1">
-      <span>H</span>
-      <div class="indicator-dot"></div>
-    </button>
-    <button class="letter-btn" data-index="2" id="btn-letter-2">
-      <span>U</span>
-      <div class="indicator-dot"></div>
-    </button>
-    <button class="letter-btn" data-index="3" id="btn-letter-3">
-      <span>S</span>
-      <div class="indicator-dot"></div>
-    </button>
-    <button class="letter-btn" data-index="4" id="btn-letter-4">
-      <span>H</span>
-      <div class="indicator-dot"></div>
-    </button>
-    <button class="letter-btn" data-index="5" id="btn-letter-5">
-      <span>I</span>
-      <div class="indicator-dot"></div>
-    </button>
+    <button class="letter-btn active" data-index="0" id="btn-letter-0">K</button>
+    <button class="letter-btn" data-index="1" id="btn-letter-1">H</button>
+    <button class="letter-btn" data-index="2" id="btn-letter-2">U</button>
+    <button class="letter-btn" data-index="3" id="btn-letter-3">S</button>
+    <button class="letter-btn" data-index="4" id="btn-letter-4">H</button>
+    <button class="letter-btn" data-index="5" id="btn-letter-5">I</button>
+    <button class="letter-btn heart-btn" data-index="6" id="btn-letter-6">❤️</button>
   </div>
 
   <div class="actions-dock">
-    <button class="quick-btn" id="btn-prev-letter">
-      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-      <span>PREV</span>
-    </button>
-    <button class="quick-btn" id="btn-explode">
-      <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.3-6.2-4.5-6.2 4.5 2.4-7.3-6.2-4.5h7.6z"/></svg>
-      <span>PULSE</span>
-    </button>
-    <button class="quick-btn" id="btn-auto-toggle">
-      <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
-      <span id="txt-auto-btn">AUTO: ON</span>
-    </button>
-    <button class="quick-btn" id="btn-next-letter">
-      <span>NEXT</span>
-      <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </button>
+    <button class="quick-btn" id="btn-prev-letter">PREV</button>
+    <button class="quick-btn" id="btn-open-letter">💌 LOVE NOTE</button>
+    <button class="quick-btn" id="btn-explode">✨ SPARKLE</button>
+    <button class="quick-btn" id="btn-next-letter">NEXT</button>
   </div>
 </div>
 
-<div class="corner-accent ca-tl"></div>
-<div class="corner-accent ca-br"></div>
+<!-- Secret Love Note Modal -->
+<div id="love-letter-modal">
+  <div class="letter-card">
+    <div class="letter-heading">DEAREST KHUSHI</div>
+    <div class="letter-body">
+      In a universe of infinite particles and countless stars, all of mine will always gravitate toward you. <br><br>
+      Thank you for your smile, your gentle warmth, and the happiness you bring into my life every single day. <br><br>
+      Forever yours, endlessly. ❤️
+    </div>
+    <button class="letter-close-btn" id="btn-close-letter">I Love You Too ❤️</button>
+  </div>
+</div>
 
-<!-- Loading Splash Screen -->
+<!-- Loading Splash -->
 <div id="loading-screen">
   <div class="loader-brand">KHUSHI</div>
-  <div class="loader-subtitle">QUANTUM PARTICLE SYSTEM</div>
+  <div class="loader-subtitle">Gathering stardust for you...</div>
   <div class="loader-progress-wrap">
     <div class="loader-progress-bar" id="loader-bar"></div>
   </div>
-  <div class="loader-status-msg" id="loader-status">INITIALIZING QUANTUM CORE...</div>
-  <div class="loader-hint">
-    Move your hand or touch the screen to interact. Pinch to zoom, swipe or make a fist to change letters.
-  </div>
+  <div class="loader-status-msg" id="loader-status">INITIALIZING...</div>
 </div>
 
 <script>
 // ============================================================
-// KHUSHI — QUANTUM PARTICLE LETTERS ENGINE
-// High-Precision Hand Tracking & Mobile Multi-Touch System
+// KHUSHI — ROMANTIC QUANTUM HEART ENGINE
 // ============================================================
-
 const threeCanvas = document.getElementById('three-canvas');
 const fxCanvas = document.getElementById('fx-canvas');
 const fxCtx = fxCanvas.getContext('2d');
@@ -830,29 +647,19 @@ const btnCamPip = document.getElementById('btn-cam-pip');
 const camMiniIcon = document.getElementById('cam-mini-icon');
 
 const ghostLetter = document.getElementById('current-letter-ghost');
+const romanticQuote = document.getElementById('romantic-quote');
 const handPointer = document.getElementById('hand-pointer');
 const gestureFlash = document.getElementById('gesture-flash');
-
-const dotStatus = document.getElementById('dot-status');
-const txtStatus = document.getElementById('txt-status');
-const dotTracking = document.getElementById('dot-tracking');
 const txtTracking = document.getElementById('txt-tracking');
-
-const hudPanel = document.getElementById('hud-panel');
-const hudToggleBtn = document.getElementById('hud-toggle-btn');
-const valPointer = document.getElementById('val-pointer');
-const valPinch = document.getElementById('val-pinch');
-const valFist = document.getElementById('val-fist');
-const valOpen = document.getElementById('val-open');
-const valSwipe = document.getElementById('val-swipe');
-const hudFps = document.getElementById('hud-fps');
 
 const btnPrev = document.getElementById('btn-prev-letter');
 const btnNext = document.getElementById('btn-next-letter');
 const btnExplode = document.getElementById('btn-explode');
-const btnAutoToggle = document.getElementById('btn-auto-toggle');
-const txtAutoBtn = document.getElementById('txt-auto-btn');
+const btnOpenLetter = document.getElementById('btn-open-letter');
+const btnCloseLetter = document.getElementById('btn-close-letter');
+const loveLetterModal = document.getElementById('love-letter-modal');
 
+// Resize 2D overlay
 function resizeFx() {
   fxCanvas.width = window.innerWidth;
   fxCanvas.height = window.innerHeight;
@@ -860,13 +667,7 @@ function resizeFx() {
 resizeFx();
 window.addEventListener('resize', resizeFx);
 
-let hudVisible = true;
-hudToggleBtn.addEventListener('click', () => {
-  hudVisible = !hudVisible;
-  hudPanel.style.display = hudVisible ? 'block' : 'none';
-  hudToggleBtn.textContent = hudVisible ? 'HIDE STATS' : 'SHOW STATS';
-});
-
+// Toggle PIP
 let camMinimized = false;
 function toggleCamPip() {
   camMinimized = !camMinimized;
@@ -875,116 +676,103 @@ function toggleCamPip() {
 btnCamPip.addEventListener('click', toggleCamPip);
 camMiniIcon.addEventListener('click', toggleCamPip);
 
-let flashTimer = null;
+// Love Letter Modal controls
+btnOpenLetter.addEventListener('click', () => {
+  AudioEngine.chime(659.25);
+  loveLetterModal.classList.add('open');
+});
+btnCloseLetter.addEventListener('click', () => {
+  AudioEngine.heartbeat();
+  loveLetterModal.classList.remove('open');
+  showGestureFlash('FOREVER & ALWAYS ❤️');
+});
+
 function showGestureFlash(text) {
   gestureFlash.textContent = text;
   gestureFlash.classList.add('show');
-  clearTimeout(flashTimer);
-  flashTimer = setTimeout(() => {
-    gestureFlash.classList.remove('show');
-  }, 1000);
+  setTimeout(() => gestureFlash.classList.remove('show'), 1200);
 }
 
-// Web Audio API Synthesizer
+// Romantic Web Audio Synthesizer
 const AudioEngine = {
   ctx: null,
   init() {
     try {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) {
-        this.ctx = new AudioContext();
-      }
+      if (AudioContext) this.ctx = new AudioContext();
     } catch(e) {}
   },
-  playTone(freq = 440, type = 'sine', duration = 0.15, vol = 0.05) {
+  chime(freq = 523.25) {
     if (!this.ctx) return;
     try {
       if (this.ctx.state === 'suspended') this.ctx.resume();
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
-      osc.type = type;
+      osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-      gain.gain.setValueAtTime(vol, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.4);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start();
-      osc.stop(this.ctx.currentTime + duration);
+      osc.stop(this.ctx.currentTime + 0.4);
     } catch(e) {}
   },
-  letterChime(idx) {
-    const freqs = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
-    const f = freqs[idx % freqs.length];
-    this.playTone(f, 'sine', 0.22, 0.08);
-    setTimeout(() => this.playTone(f * 1.5, 'triangle', 0.18, 0.04), 45);
-  },
-  pulseWave() {
-    this.playTone(220, 'triangle', 0.4, 0.09);
-    setTimeout(() => this.playTone(440, 'sine', 0.3, 0.06), 70);
+  heartbeat() {
+    if (!this.ctx) return;
+    try {
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      const now = this.ctx.currentTime;
+      // Lub
+      const o1 = this.ctx.createOscillator();
+      const g1 = this.ctx.createGain();
+      o1.type = 'triangle';
+      o1.frequency.setValueAtTime(80, now);
+      g1.gain.setValueAtTime(0.25, now);
+      g1.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+      o1.connect(g1); g1.connect(this.ctx.destination);
+      o1.start(now); o1.stop(now + 0.12);
+
+      // Dub
+      const o2 = this.ctx.createOscillator();
+      const g2 = this.ctx.createGain();
+      o2.type = 'triangle';
+      o2.frequency.setValueAtTime(70, now + 0.16);
+      g2.gain.setValueAtTime(0.2, now + 0.16);
+      g2.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      o2.connect(g2); g2.connect(this.ctx.destination);
+      o2.start(now + 0.16); o2.stop(now + 0.3);
+    } catch(e) {}
   }
 };
 window.addEventListener('pointerdown', () => AudioEngine.init(), { once: true });
 
 // ============================================================
-// NAME CONFIGURATION: K - H - U - S - H - I
+// ITEMS: K, H, U, S, H, I, and ❤️
 // ============================================================
-const LETTERS = ['K', 'H', 'U', 'S', 'H', 'I'];
+const ITEMS = ['K', 'H', 'U', 'S', 'H', 'I', '❤️'];
 
-const LETTER_PALETTES = {
-  0: {
-    hex: '#00f3ff',
-    colors: [
-      [0.0, 0.95, 1.0],
-      [0.1, 0.75, 1.0],
-      [0.4, 1.0, 0.95]
-    ]
-  },
-  1: {
-    hex: '#b537f2',
-    colors: [
-      [0.71, 0.22, 0.95],
-      [0.85, 0.40, 1.0],
-      [0.55, 0.15, 0.9]
-    ]
-  },
-  2: {
-    hex: '#ff5376',
-    colors: [
-      [1.0, 0.33, 0.46],
-      [1.0, 0.58, 0.35],
-      [1.0, 0.25, 0.6]
-    ]
-  },
-  3: {
-    hex: '#ffd000',
-    colors: [
-      [1.0, 0.82, 0.0],
-      [1.0, 0.65, 0.15],
-      [1.0, 0.95, 0.4]
-    ]
-  },
-  4: {
-    hex: '#ff2a9d',
-    colors: [
-      [1.0, 0.16, 0.62],
-      [1.0, 0.45, 0.8],
-      [0.85, 0.1, 0.75]
-    ]
-  },
-  5: {
-    hex: '#00ffa3',
-    colors: [
-      [0.0, 1.0, 0.64],
-      [0.2, 0.9, 0.5],
-      [0.35, 1.0, 0.85]
-    ]
-  }
-};
+const ITEM_QUOTES = [
+  "“Kindest soul in my entire universe”",
+  "“Heart that beats only for you”",
+  "“Unconditionally, endlessly yours”",
+  "“Smile that lights up my darkest days”",
+  "“Home is wherever you are”",
+  "“Infinite love, today and always”",
+  "“Forever & Always, My Khushi ❤️”"
+];
 
-// ============================================================
-// CRISP, SLENDER VECTOR STROKE DEFINITIONS
-// Slender vectors ensure strokes are never blocky or thick
-// ============================================================
+const ITEM_PALETTES = [
+  { hex: '#ff4d79', colors: [[1.0, 0.3, 0.48], [1.0, 0.5, 0.65], [1.0, 0.2, 0.35]] }, // K
+  { hex: '#c084fc', colors: [[0.75, 0.4, 0.98], [0.85, 0.6, 1.0], [0.6, 0.2, 0.85]] },  // H
+  { hex: '#fb7185', colors: [[0.98, 0.44, 0.52], [1.0, 0.65, 0.7], [0.95, 0.3, 0.4]] },  // U
+  { hex: '#fbbf24', colors: [[0.98, 0.75, 0.15], [1.0, 0.85, 0.4], [0.95, 0.6, 0.1]] },  // S
+  { hex: '#f43f5e', colors: [[0.95, 0.25, 0.37], [1.0, 0.5, 0.6], [0.85, 0.15, 0.25]] }, // H
+  { hex: '#38bdf8', colors: [[0.22, 0.74, 0.97], [0.5, 0.85, 1.0], [0.1, 0.6, 0.85]] },  // I
+  { hex: '#ff2a5f', colors: [[1.0, 0.16, 0.37], [1.0, 0.4, 0.55], [0.9, 0.05, 0.2]] }   // ❤️
+];
+
+// Vector Strokes for K, H, U, S, I
 const LETTER_STROKES = {
   K: [
     [[-0.55, 1.25], [-0.55, -1.25]],
@@ -997,35 +785,10 @@ const LETTER_STROKES = {
     [[-0.55, 0.0], [0.55, 0.0]]
   ],
   U: [
-    [
-      [-0.55, 1.25],
-      [-0.55, -0.4],
-      [-0.48, -0.85],
-      [-0.28, -1.18],
-      [0.0, -1.25],
-      [0.28, -1.18],
-      [0.48, -0.85],
-      [0.55, -0.4],
-      [0.55, 1.25]
-    ]
+    [[-0.55, 1.25], [-0.55, -0.4], [-0.48, -0.85], [-0.28, -1.18], [0.0, -1.25], [0.28, -1.18], [0.48, -0.85], [0.55, -0.4], [0.55, 1.25]]
   ],
   S: [
-    [
-      [0.5, 0.95],
-      [0.38, 1.22],
-      [0.0, 1.25],
-      [-0.38, 1.15],
-      [-0.5, 0.78],
-      [-0.38, 0.42],
-      [-0.05, 0.12],
-      [0.25, -0.15],
-      [0.5, -0.48],
-      [0.52, -0.85],
-      [0.35, -1.18],
-      [0.0, -1.25],
-      [-0.4, -1.18],
-      [-0.52, -0.85]
-    ]
+    [[0.5, 0.95], [0.38, 1.22], [0.0, 1.25], [-0.38, 1.15], [-0.5, 0.78], [-0.38, 0.42], [-0.05, 0.12], [0.25, -0.15], [0.5, -0.48], [0.52, -0.85], [0.35, -1.18], [0.0, -1.25], [-0.4, -1.18], [-0.52, -0.85]]
   ],
   I: [
     [[-0.45, 1.25], [0.45, 1.25]],
@@ -1050,9 +813,7 @@ function sampleStroke(pts, n) {
   if (totalLen <= 0.0001) return [[pts[0][0], pts[0][1]]];
 
   const step = totalLen / (n - 1);
-  let segIdx = 0;
-  let segWalked = 0;
-
+  let segIdx = 0, segWalked = 0;
   result.push([pts[0][0], pts[0][1]]);
 
   for (let p = 1; p < n - 1; p++) {
@@ -1062,64 +823,74 @@ function sampleStroke(pts, n) {
     }
     const curSegLen = segs[segIdx] || 1;
     const t = (target - segWalked) / curSegLen;
-    const x = pts[segIdx][0] + t * (pts[segIdx + 1][0] - pts[segIdx][0]);
-    const y = pts[segIdx][1] + t * (pts[segIdx + 1][1] - pts[segIdx][1]);
-    result.push([x, y]);
+    result.push([
+      pts[segIdx][0] + t * (pts[segIdx + 1][0] - pts[segIdx][0]),
+      pts[segIdx][1] + t * (pts[segIdx + 1][1] - pts[segIdx][1])
+    ]);
   }
-
   result.push([pts[pts.length - 1][0], pts[pts.length - 1][1]]);
   return result;
 }
 
-const LETTER_PARTICLES = 6000;
-const DUST_PARTICLES = 1200;
+const LETTER_PARTICLES = 6200;
+const DUST_PARTICLES = 1400;
 const TOTAL_PARTICLES = LETTER_PARTICLES + DUST_PARTICLES;
 
-function buildLetterTargets(letterIndex) {
-  const letterChar = LETTERS[letterIndex];
-  const strokes = LETTER_STROKES[letterChar];
-  const palette = LETTER_PALETTES[letterIndex].colors;
-
-  const strokeLens = strokes.map(stroke => {
-    let l = 0;
-    for (let i = 0; i < stroke.length - 1; i++) {
-      l += Math.hypot(stroke[i + 1][0] - stroke[i][0], stroke[i + 1][1] - stroke[i][1]);
-    }
-    return l;
-  });
-
-  const totalLen = strokeLens.reduce((a, b) => a + b, 0);
-  const strokeSamplePts = [];
-
-  strokes.forEach((stroke, si) => {
-    const count = Math.max(16, Math.round(LETTER_PARTICLES * (strokeLens[si] / totalLen)));
-    const sampled = sampleStroke(stroke, count);
-    sampled.forEach(pt => strokeSamplePts.push(pt));
-  });
-
+// Generate 3D Targets for Letters and Heart
+function buildTargets(index) {
+  const item = ITEMS[index];
+  const palette = ITEM_PALETTES[index].colors;
   const tArr = new Float32Array(TOTAL_PARTICLES * 3);
   const cArr = new Float32Array(TOTAL_PARTICLES * 3);
-  const scale = 3.35;
 
-  for (let i = 0; i < LETTER_PARTICLES; i++) {
-    const p = strokeSamplePts[i % strokeSamplePts.length];
-    
-    // Slender jitter
-    const jx = (Math.random() - 0.5) * 0.045;
-    const jy = (Math.random() - 0.5) * 0.045;
-    const jz = (Math.random() - 0.5) * 0.12;
+  if (item === '❤️') {
+    // Mathematical 3D Parametric Heart
+    for (let i = 0; i < LETTER_PARTICLES; i++) {
+      const t = Math.PI * 2 * Math.random();
+      const r = Math.sqrt(Math.random()); // filled volume
+      const x = 16 * Math.pow(Math.sin(t), 3) * r * 0.19;
+      const y = (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * r * 0.19;
+      const z = (Math.random() - 0.5) * 0.45;
 
-    tArr[i * 3]     = (p[0] + jx) * scale;
-    tArr[i * 3 + 1] = (p[1] + jy) * scale;
-    tArr[i * 3 + 2] = jz;
+      tArr[i * 3]     = x;
+      tArr[i * 3 + 1] = y;
+      tArr[i * 3 + 2] = z;
 
-    const col = palette[i % palette.length];
-    const brightness = 0.7 + Math.random() * 0.35;
-    cArr[i * 3]     = col[0] * brightness;
-    cArr[i * 3 + 1] = col[1] * brightness;
-    cArr[i * 3 + 2] = col[2] * brightness;
+      const col = palette[i % palette.length];
+      cArr[i * 3]     = col[0];
+      cArr[i * 3 + 1] = col[1];
+      cArr[i * 3 + 2] = col[2];
+    }
+  } else {
+    // Slender Letter Strokes
+    const strokes = LETTER_STROKES[item];
+    const strokeLens = strokes.map(s => {
+      let l = 0;
+      for (let i = 0; i < s.length - 1; i++) l += Math.hypot(s[i + 1][0] - s[i][0], s[i + 1][1] - s[i][1]);
+      return l;
+    });
+    const totalLen = strokeLens.reduce((a, b) => a + b, 0);
+    const sampled = [];
+    strokes.forEach((stroke, si) => {
+      const count = Math.max(16, Math.round(LETTER_PARTICLES * (strokeLens[si] / totalLen)));
+      sampleStroke(stroke, count).forEach(p => sampled.push(p));
+    });
+
+    const scale = 3.35;
+    for (let i = 0; i < LETTER_PARTICLES; i++) {
+      const p = sampled[i % sampled.length];
+      tArr[i * 3]     = (p[0] + (Math.random() - 0.5) * 0.045) * scale;
+      tArr[i * 3 + 1] = (p[1] + (Math.random() - 0.5) * 0.045) * scale;
+      tArr[i * 3 + 2] = (Math.random() - 0.5) * 0.12;
+
+      const col = palette[i % palette.length];
+      cArr[i * 3]     = col[0];
+      cArr[i * 3 + 1] = col[1];
+      cArr[i * 3 + 2] = col[2];
+    }
   }
 
+  // Floating ambient stardust
   for (let i = LETTER_PARTICLES; i < TOTAL_PARTICLES; i++) {
     const rad = 6.0 + Math.random() * 8.0;
     const theta = Math.random() * Math.PI * 2;
@@ -1130,48 +901,35 @@ function buildLetterTargets(letterIndex) {
     tArr[i * 3 + 2] = rad * Math.sin(theta) * Math.cos(phi);
 
     const c = palette[i % palette.length];
-    const dim = 0.25 + Math.random() * 0.3;
-    cArr[i * 3]     = c[0] * dim;
-    cArr[i * 3 + 1] = c[1] * dim;
-    cArr[i * 3 + 2] = c[2] * dim;
+    cArr[i * 3]     = c[0] * 0.35;
+    cArr[i * 3 + 1] = c[1] * 0.35;
+    cArr[i * 3 + 2] = c[2] * 0.35;
   }
 
   return { tArr, cArr };
 }
 
-const PRECOMPUTED_LETTERS = [];
-for (let i = 0; i < LETTERS.length; i++) {
-  PRECOMPUTED_LETTERS.push(buildLetterTargets(i));
-}
+const PRECOMPUTED_TARGETS = ITEMS.map((_, i) => buildTargets(i));
 
 // ============================================================
 // THREE.JS SETUP
 // ============================================================
 const renderer = new THREE.WebGLRenderer({
   canvas: threeCanvas,
-  antialias: true,
-  powerPreference: 'high-performance'
+  antialias: true
 });
-
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x030308, 1);
+renderer.setClearColor(0x050208, 1);
 
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x030308, 0.038);
+scene.fog = new THREE.FogExp2(0x050208, 0.035);
 
-const camera = new THREE.PerspectiveCamera(
-  65,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
+const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 function getBaseCamZ() {
-  const isPortrait = window.innerHeight > window.innerWidth;
-  return isPortrait ? 13.5 : 10.0;
+  return (window.innerHeight > window.innerWidth) ? 13.5 : 10.0;
 }
-
 let targetCameraZ = getBaseCamZ();
 camera.position.z = targetCameraZ;
 
@@ -1182,18 +940,16 @@ window.addEventListener('resize', () => {
   targetCameraZ = getBaseCamZ();
 });
 
+// Stardust Particle Texture
 function createStardustTexture() {
   const canvas = document.createElement('canvas');
-  canvas.width = 64;
-  canvas.height = 64;
+  canvas.width = canvas.height = 64;
   const ctx = canvas.getContext('2d');
-  
   const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
   grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
-  grad.addColorStop(0.18, 'rgba(255, 255, 255, 0.9)');
-  grad.addColorStop(0.45, 'rgba(200, 240, 255, 0.35)');
+  grad.addColorStop(0.2, 'rgba(255, 200, 220, 0.85)');
+  grad.addColorStop(0.5, 'rgba(255, 77, 121, 0.3)');
   grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 64, 64);
   return new THREE.CanvasTexture(canvas);
@@ -1204,23 +960,19 @@ const velocities = new Float32Array(TOTAL_PARTICLES * 3);
 const currentTargets = new Float32Array(TOTAL_PARTICLES * 3);
 const colors = new Float32Array(TOTAL_PARTICLES * 3);
 const baseColors = new Float32Array(TOTAL_PARTICLES * 3);
-const sizes = new Float32Array(TOTAL_PARTICLES);
 
 for (let i = 0; i < TOTAL_PARTICLES; i++) {
-  const i3 = i * 3;
-  positions[i3]     = (Math.random() - 0.5) * 28;
-  positions[i3 + 1] = (Math.random() - 0.5) * 28;
-  positions[i3 + 2] = (Math.random() - 0.5) * 28;
-  sizes[i] = (i < LETTER_PARTICLES) ? (Math.random() * 0.7 + 0.5) : (Math.random() * 0.4 + 0.2);
+  positions[i * 3]     = (Math.random() - 0.5) * 26;
+  positions[i * 3 + 1] = (Math.random() - 0.5) * 26;
+  positions[i * 3 + 2] = (Math.random() - 0.5) * 26;
 }
 
 const geometry = new THREE.BufferGeometry();
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
 const material = new THREE.PointsMaterial({
-  size: 0.048,
+  size: 0.05,
   vertexColors: true,
   map: createStardustTexture(),
   transparent: true,
@@ -1233,12 +985,11 @@ const particleSystem = new THREE.Points(geometry, material);
 scene.add(particleSystem);
 
 // ============================================================
-// INTERACTION STATE & EXACT RAYCAST ALIGNMENT
+// EXACT RAYCAST & INTERACTION
 // ============================================================
-let currentLetterIndex = 0;
-let isAutoCycle = true;
-let autoCycleTimer = 0;
-const AUTO_CYCLE_MAX = 480;
+let currentIndex = 0;
+let autoTimer = 0;
+const AUTO_MAX = 450;
 
 const Pointer = {
   active: false,
@@ -1248,43 +999,36 @@ const Pointer = {
   targetScreenX: window.innerWidth * 0.5,
   targetScreenY: window.innerHeight * 0.5,
   pos3D: new THREE.Vector3(0, 0, 0),
-  repelStrength: 0,
-  pinchDist: 1.0,
-  isFist: false,
-  isOpen: false,
-  fistCooldown: 0,
-  swipeCooldown: 0,
-  swipeVelX: 0,
-  swipeVelY: 0,
+  repelStrength: 0.7,
   lastX: null,
-  lastY: null
+  lastY: null,
+  swipeVelX: 0,
+  swipeCooldown: 0,
+  fistCooldown: 0,
+  isFist: false
 };
 
-// Exact Raycasting: Unprojects screen coordinate onto Z = 0 plane
 const raycasterPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
 const raycaster = new THREE.Raycaster();
 const screenMouse = new THREE.Vector2();
-const intersectionPoint = new THREE.Vector3();
+const hitPoint = new THREE.Vector3();
 
-function update3DPointerExact(screenX, screenY) {
-  screenMouse.x = (screenX / window.innerWidth) * 2 - 1;
-  screenMouse.y = -(screenY / window.innerHeight) * 2 + 1;
-
+function updateExactRaycast(sx, sy) {
+  screenMouse.x = (sx / window.innerWidth) * 2 - 1;
+  screenMouse.y = -(sy / window.innerHeight) * 2 + 1;
   raycaster.setFromCamera(screenMouse, camera);
-  const hit = raycaster.ray.intersectPlane(raycasterPlane, intersectionPoint);
-
-  if (hit) {
-    Pointer.pos3D.copy(intersectionPoint);
+  if (raycaster.ray.intersectPlane(raycasterPlane, hitPoint)) {
+    Pointer.pos3D.copy(hitPoint);
     particleSystem.worldToLocal(Pointer.pos3D);
   }
 }
 
-// Letter Switching
-function setLetter(index, reason = '') {
-  currentLetterIndex = (index % LETTERS.length + LETTERS.length) % LETTERS.length;
-  const currentLetterChar = LETTERS[currentLetterIndex];
-  const targetData = PRECOMPUTED_LETTERS[currentLetterIndex];
-  const palette = LETTER_PALETTES[currentLetterIndex];
+// Letter / Heart Switching
+function setIndex(idx, reason = '') {
+  currentIndex = (idx % ITEMS.length + ITEMS.length) % ITEMS.length;
+  const item = ITEMS[currentIndex];
+  const targetData = PRECOMPUTED_TARGETS[currentIndex];
+  const palette = ITEM_PALETTES[currentIndex];
 
   currentTargets.set(targetData.tArr);
   baseColors.set(targetData.cArr);
@@ -1294,230 +1038,145 @@ function setLetter(index, reason = '') {
   document.documentElement.style.setProperty('--primary', palette.hex);
   document.documentElement.style.setProperty('--active-color', palette.hex);
 
-  ghostLetter.textContent = currentLetterChar;
+  ghostLetter.textContent = item;
   ghostLetter.style.color = palette.hex;
 
-  for (let i = 0; i < LETTERS.length; i++) {
+  // Romantic Whisper Fade
+  romanticQuote.style.opacity = '0';
+  romanticQuote.style.transform = 'translateY(8px)';
+  setTimeout(() => {
+    romanticQuote.textContent = ITEM_QUOTES[currentIndex];
+    romanticQuote.style.opacity = '1';
+    romanticQuote.style.transform = 'translateY(0)';
+  }, 250);
+
+  // Buttons update
+  for (let i = 0; i < ITEMS.length; i++) {
     const btn = document.getElementById(`btn-letter-${i}`);
     if (btn) {
-      const isActive = (i === currentLetterIndex);
-      btn.classList.toggle('active', isActive);
-      btn.style.color = isActive ? palette.hex : '';
-      btn.style.borderColor = isActive ? palette.hex : 'transparent';
-      btn.style.boxShadow = isActive ? `0 0 16px ${palette.hex}` : '';
+      btn.classList.toggle('active', i === currentIndex);
     }
   }
 
-  AudioEngine.letterChime(currentLetterIndex);
-
-  if (reason) {
-    showGestureFlash(`${reason}: ${currentLetterChar}`);
+  if (item === '❤️') {
+    AudioEngine.heartbeat();
+    showGestureFlash('MY HEART BEATS FOR YOU ❤️');
+  } else {
+    AudioEngine.chime(440 + currentIndex * 60);
+    if (reason) showGestureFlash(`${reason}: ${item}`);
   }
 
-  autoCycleTimer = 0;
+  autoTimer = 0;
 }
 
-function nextLetter(reason = 'NEXT') {
-  setLetter(currentLetterIndex + 1, reason);
-}
-
-function prevLetter(reason = 'PREV') {
-  setLetter(currentLetterIndex - 1, reason);
-}
-
-function pulseLetter() {
-  AudioEngine.pulseWave();
-  showGestureFlash('QUANTUM PULSE');
+btnPrev.addEventListener('click', () => setIndex(currentIndex - 1, 'PREV'));
+btnNext.addEventListener('click', () => setIndex(currentIndex + 1, 'NEXT'));
+btnExplode.addEventListener('click', () => {
+  AudioEngine.chime(880);
+  showGestureFlash('STARDUST SHOWER ✨');
   for (let i = 0; i < TOTAL_PARTICLES; i++) {
-    const i3 = i * 3;
-    const force = 0.28 + Math.random() * 0.45;
-    velocities[i3]     += (Math.random() - 0.5) * force;
-    velocities[i3 + 1] += (Math.random() - 0.5) * force;
-    velocities[i3 + 2] += (Math.random() - 0.5) * force;
+    velocities[i * 3]     += (Math.random() - 0.5) * 0.45;
+    velocities[i * 3 + 1] += (Math.random() - 0.5) * 0.45;
+    velocities[i * 3 + 2] += (Math.random() - 0.5) * 0.45;
   }
-}
-
-for (let i = 0; i < LETTERS.length; i++) {
-  const btn = document.getElementById(`btn-letter-${i}`);
-  if (btn) {
-    btn.addEventListener('click', () => setLetter(i, 'SELECT'));
-  }
-}
-
-btnPrev.addEventListener('click', () => prevLetter('PREV'));
-btnNext.addEventListener('click', () => nextLetter('NEXT'));
-btnExplode.addEventListener('click', pulseLetter);
-
-btnAutoToggle.addEventListener('click', () => {
-  isAutoCycle = !isAutoCycle;
-  txtAutoBtn.textContent = isAutoCycle ? 'AUTO: ON' : 'AUTO: OFF';
-  showGestureFlash(isAutoCycle ? 'AUTO CYCLE: ON' : 'AUTO CYCLE: OFF');
 });
 
-// Swipe trail FX
-let swipeTrail = [];
-const MAX_SWIPE_TRAIL = 24;
-
-function addSwipeTrailPoint(x, y) {
-  swipeTrail.push({
-    x, y,
-    alpha: 1.0,
-    radius: 12 + Math.random() * 8,
-    color: LETTER_PALETTES[currentLetterIndex].hex
-  });
-  if (swipeTrail.length > MAX_SWIPE_TRAIL) {
-    swipeTrail.shift();
-  }
+for (let i = 0; i < ITEMS.length; i++) {
+  const btn = document.getElementById(`btn-letter-${i}`);
+  if (btn) btn.addEventListener('click', () => setIndex(i, 'SELECT'));
 }
 
-function renderSwipeTrail() {
+// Romantic Heart Particles for Fingertip Trail
+let heartTrail = [];
+function addHeartParticle(x, y) {
+  heartTrail.push({
+    x, y,
+    vx: (Math.random() - 0.5) * 1.5,
+    vy: -1.2 - Math.random() * 2.0,
+    alpha: 1.0,
+    size: 14 + Math.random() * 12,
+    char: Math.random() > 0.4 ? '❤️' : '✨'
+  });
+  if (heartTrail.length > 25) heartTrail.shift();
+}
+
+function renderHeartTrail() {
   fxCtx.clearRect(0, 0, fxCanvas.width, fxCanvas.height);
-  for (let i = 0; i < swipeTrail.length; i++) {
-    const pt = swipeTrail[i];
-    pt.alpha *= 0.88;
-    pt.radius *= 0.94;
-    
-    if (pt.alpha > 0.02) {
+  for (let i = 0; i < heartTrail.length; i++) {
+    const p = heartTrail[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.alpha *= 0.94;
+    p.size *= 0.97;
+
+    if (p.alpha > 0.04) {
       fxCtx.save();
-      fxCtx.beginPath();
-      fxCtx.arc(pt.x, pt.y, Math.max(1, pt.radius), 0, Math.PI * 2);
-      fxCtx.fillStyle = pt.color;
-      fxCtx.globalAlpha = pt.alpha * 0.6;
-      fxCtx.shadowColor = pt.color;
-      fxCtx.shadowBlur = 14;
-      fxCtx.fill();
+      fxCtx.font = `${p.size}px serif`;
+      fxCtx.globalAlpha = p.alpha;
+      fxCtx.fillText(p.char, p.x, p.y);
       fxCtx.restore();
     }
   }
-  swipeTrail = swipeTrail.filter(pt => pt.alpha > 0.02);
+  heartTrail = heartTrail.filter(p => p.alpha > 0.04);
 }
 
-// MediaPipe Hand Tracking
-let mpInitialized = false;
-
+// MediaPipe Hand Detection
 function onHandResults(results) {
   if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
     const lm = results.multiHandLandmarks[0];
-
     const indexTip = lm[8];
     const indexMCP = lm[5];
     const thumbTip = lm[4];
     const middleTip = lm[12];
     const middleMCP = lm[9];
     const ringTip = lm[16];
-    const ringMCP = lm[13];
     const pinkyTip = lm[20];
-    const pinkyMCP = lm[17];
 
-    const rawPointerX = (1.0 - indexTip.x) * window.innerWidth;
-    const rawPointerY = indexTip.y * window.innerHeight;
+    const rawX = (1.0 - indexTip.x) * window.innerWidth;
+    const rawY = indexTip.y * window.innerHeight;
 
     Pointer.active = true;
     Pointer.source = 'hand';
-    Pointer.targetScreenX = rawPointerX;
-    Pointer.targetScreenY = rawPointerY;
-
-    dotTracking.classList.add('hand-active');
+    Pointer.targetScreenX = rawX;
+    Pointer.targetScreenY = rawY;
     txtTracking.textContent = 'HAND DETECTED';
 
-    // Swipe calculation
-    const handCenterX = 1.0 - middleMCP.x;
-    const handCenterY = middleMCP.y;
+    addHeartParticle(rawX, rawY);
 
+    // Swipe
+    const centerX = 1.0 - middleMCP.x;
     if (Pointer.lastX !== null) {
-      const dx = handCenterX - Pointer.lastX;
-      const dy = handCenterY - Pointer.lastY;
+      const dx = centerX - Pointer.lastX;
       Pointer.swipeVelX = Pointer.swipeVelX * 0.5 + dx * 0.5;
-      Pointer.swipeVelY = Pointer.swipeVelY * 0.5 + dy * 0.5;
-      const speed = Math.hypot(Pointer.swipeVelX, Pointer.swipeVelY);
-
-      if (speed > 0.012) {
-        addSwipeTrailPoint(rawPointerX, rawPointerY);
-      }
-
-      valSwipe.textContent = (speed > 0.005) ? speed.toFixed(3) : '—';
-
-      const SWIPE_THRESHOLD = 0.028;
-      if (speed > SWIPE_THRESHOLD && Pointer.swipeCooldown <= 0) {
-        if (Math.abs(Pointer.swipeVelX) > Math.abs(Pointer.swipeVelY)) {
-          if (Pointer.swipeVelX > 0) {
-            nextLetter('SWIPE →');
-          } else {
-            prevLetter('← SWIPE');
-          }
-        } else {
-          pulseLetter();
-        }
+      if (Math.abs(Pointer.swipeVelX) > 0.026 && Pointer.swipeCooldown <= 0) {
+        if (Pointer.swipeVelX > 0) setIndex(currentIndex + 1, 'SWIPE →');
+        else setIndex(currentIndex - 1, '← SWIPE');
         Pointer.swipeCooldown = 32;
       }
     }
-    Pointer.lastX = handCenterX;
-    Pointer.lastY = handCenterY;
-
+    Pointer.lastX = centerX;
     if (Pointer.swipeCooldown > 0) Pointer.swipeCooldown--;
 
-    // Pinch
-    const pinchDist = Math.hypot(thumbTip.x - indexTip.x, thumbTip.y - indexTip.y);
-    valPinch.textContent = pinchDist.toFixed(3);
-
-    const PINCH_THRESHOLD = 0.075;
-    if (pinchDist < PINCH_THRESHOLD) {
-      valPinch.style.color = '#ff2a9d';
-      targetCameraZ = Math.max(5.5, targetCameraZ - 0.22);
-    } else if (pinchDist > 0.22) {
-      valPinch.style.color = '#00ffa3';
-      targetCameraZ = Math.min(getBaseCamZ() + 4.0, targetCameraZ + 0.12);
-    } else {
-      valPinch.style.color = 'var(--primary)';
-    }
-
     // Fist
-    const isFistCurled = (
-      indexTip.y > indexMCP.y &&
-      middleTip.y > middleMCP.y &&
-      ringTip.y > ringMCP.y &&
-      pinkyTip.y > pinkyMCP.y
-    );
-
-    valFist.textContent = isFistCurled ? 'YES' : 'NO';
-    valFist.style.color = isFistCurled ? '#ffd000' : 'rgba(255,255,255,0.7)';
-
-    if (isFistCurled && !Pointer.isFist && Pointer.fistCooldown <= 0) {
-      nextLetter('FIST TRIGGER');
-      Pointer.fistCooldown = 42;
+    const isFist = (indexTip.y > indexMCP.y && middleTip.y > middleMCP.y && ringTip.y > lm[13].y && pinkyTip.y > lm[17].y);
+    if (isFist && !Pointer.isFist && Pointer.fistCooldown <= 0) {
+      setIndex(currentIndex + 1, 'FIST TRIGGER');
+      Pointer.fistCooldown = 40;
     }
-    Pointer.isFist = isFistCurled;
+    Pointer.isFist = isFist;
     if (Pointer.fistCooldown > 0) Pointer.fistCooldown--;
 
-    // Open Palm
-    const isOpenSpread = (
-      indexTip.y < indexMCP.y - 0.04 &&
-      middleTip.y < middleMCP.y - 0.04 &&
-      ringTip.y < ringMCP.y - 0.04 &&
-      pinkyTip.y < pinkyMCP.y - 0.04
-    );
-
-    valOpen.textContent = isOpenSpread ? 'ACTIVE' : 'NO';
-    valOpen.style.color = isOpenSpread ? '#00ffa3' : 'rgba(255,255,255,0.7)';
-
-    Pointer.repelStrength = isOpenSpread ? 1.0 : 0.65;
-    valPointer.textContent = 'TRACKING';
-    valPointer.style.color = '#00ffa3';
+    // Pinch Zoom
+    const pinch = Math.hypot(thumbTip.x - indexTip.x, thumbTip.y - indexTip.y);
+    if (pinch < 0.075) targetCameraZ = Math.max(5.5, targetCameraZ - 0.2);
+    else if (pinch > 0.22) targetCameraZ = Math.min(getBaseCamZ() + 3.5, targetCameraZ + 0.12);
 
   } else {
     if (Pointer.source === 'hand') {
       Pointer.active = false;
       Pointer.source = 'none';
-      dotTracking.classList.remove('hand-active');
       txtTracking.textContent = 'AWAITING HAND / TOUCH';
-      valPointer.textContent = 'IDLE';
-      valPointer.style.color = 'rgba(255,255,255,0.5)';
-      valPinch.textContent = '—';
-      valFist.textContent = 'NO';
-      valOpen.textContent = 'NO';
-      valSwipe.textContent = '—';
       Pointer.lastX = null;
-      Pointer.lastY = null;
     }
   }
 }
@@ -1525,55 +1184,31 @@ function onHandResults(results) {
 function initMediaPipe() {
   try {
     const hands = new Hands({
-      locateFile: file => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+      locateFile: f => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${f}`
     });
-
-    hands.setOptions({
-      maxNumHands: 1,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.65,
-      minTrackingConfidence: 0.55
-    });
-
+    hands.setOptions({ maxNumHands: 1, modelComplexity: 1, minDetectionConfidence: 0.65, minTrackingConfidence: 0.55 });
     hands.onResults(onHandResults);
 
-    const cameraUtils = new Camera(videoEl, {
-      onFrame: async () => {
-        await hands.send({ image: videoEl });
-      },
-      width: 640,
-      height: 480
+    const cam = new Camera(videoEl, {
+      onFrame: async () => { await hands.send({ image: videoEl }); },
+      width: 640, height: 480
     });
-
-    cameraUtils.start().then(() => {
-      mpInitialized = true;
-      dotStatus.classList.add('active');
-      txtStatus.textContent = 'CAMERA & VISION ACTIVE';
-    }).catch(err => {
-      console.warn('Camera fallback to touch:', err);
-      txtStatus.textContent = 'TOUCH INTERFACE ACTIVE';
-    });
-  } catch (err) {
-    console.warn('MediaPipe error:', err);
-    txtStatus.textContent = 'TOUCH MODE ACTIVE';
+    cam.start().catch(() => { txtTracking.textContent = 'TOUCH MODE'; });
+  } catch(e) {
+    txtTracking.textContent = 'TOUCH MODE';
   }
 }
 
-// Mobile Touch & Mouse Interactions
-let touchStartDistance = 0;
+// Touch & Pointer Fallback
 let touchStartX = 0;
-
 window.addEventListener('pointerdown', e => {
-  if (e.target.closest('#nav-container') || e.target.closest('#hud-drawer') || e.target.closest('#webcam-wrap')) {
-    return;
-  }
+  if (e.target.closest('#nav-container') || e.target.closest('#webcam-wrap') || e.target.closest('#love-letter-modal')) return;
   Pointer.active = true;
   Pointer.source = 'touch';
   Pointer.targetScreenX = e.clientX;
   Pointer.targetScreenY = e.clientY;
-  Pointer.repelStrength = 0.8;
   touchStartX = e.clientX;
-  dotTracking.classList.add('hand-active');
+  addHeartParticle(e.clientX, e.clientY);
   txtTracking.textContent = 'TOUCH ACTIVE';
 });
 
@@ -1581,12 +1216,12 @@ window.addEventListener('pointermove', e => {
   if (Pointer.active && Pointer.source === 'touch') {
     Pointer.targetScreenX = e.clientX;
     Pointer.targetScreenY = e.clientY;
-    addSwipeTrailPoint(e.clientX, e.clientY);
+    addHeartParticle(e.clientX, e.clientY);
 
     const dx = e.clientX - touchStartX;
     if (Math.abs(dx) > 120 && Pointer.swipeCooldown <= 0) {
-      if (dx > 0) nextLetter('SWIPE →');
-      else prevLetter('← SWIPE');
+      if (dx > 0) setIndex(currentIndex + 1, 'SWIPE →');
+      else setIndex(currentIndex - 1, '← SWIPE');
       Pointer.swipeCooldown = 30;
       touchStartX = e.clientX;
     }
@@ -1597,193 +1232,109 @@ window.addEventListener('pointerup', () => {
   if (Pointer.source === 'touch') {
     Pointer.active = false;
     Pointer.source = 'none';
-    dotTracking.classList.remove('hand-active');
     txtTracking.textContent = 'AWAITING HAND / TOUCH';
   }
 });
 
-window.addEventListener('touchstart', e => {
-  if (e.touches.length === 2) {
-    touchStartDistance = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY
-    );
-  }
-}, { passive: true });
-
-window.addEventListener('touchmove', e => {
-  if (e.touches.length === 2) {
-    const currentDist = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY
-    );
-    const delta = currentDist - touchStartDistance;
-    touchStartDistance = currentDist;
-    targetCameraZ = Math.max(5.5, Math.min(getBaseCamZ() + 5.0, targetCameraZ - delta * 0.035));
-    showGestureFlash('PINCH ZOOM');
-  }
-}, { passive: true });
-
-window.addEventListener('wheel', e => {
-  targetCameraZ = Math.max(5.5, Math.min(getBaseCamZ() + 6.0, targetCameraZ + e.deltaY * 0.005));
-}, { passive: true });
-
 // Animation Loop
-let frameCount = 0;
-let lastFpsTime = performance.now();
-let fpsCounter = 0;
+let frame = 0;
+const LERP = 0.038, FRIC = 0.905, REPEL = 2.4;
 
-const LERP_SPEED = 0.038;
-const FRICTION = 0.905;
-const REPEL_RADIUS = 2.4;
-
-function animate(time) {
+function animate() {
   requestAnimationFrame(animate);
+  frame++;
+  autoTimer++;
 
-  frameCount++;
-  fpsCounter++;
-
-  if (time - lastFpsTime >= 1000) {
-    hudFps.textContent = `${fpsCounter} FPS`;
-    fpsCounter = 0;
-    lastFpsTime = time;
-  }
-
-  if (isAutoCycle) {
-    autoCycleTimer++;
-    if (autoCycleTimer > AUTO_CYCLE_MAX) {
-      nextLetter('AUTO');
-    }
+  if (autoTimer > AUTO_MAX) {
+    setIndex(currentIndex + 1, 'AUTO');
   }
 
   camera.position.z += (targetCameraZ - camera.position.z) * 0.06;
-
-  const orbitAngle = frameCount * 0.00045;
-  camera.position.x = Math.sin(orbitAngle) * 0.75;
-  camera.position.y = Math.cos(orbitAngle * 0.7) * 0.35;
+  const ang = frame * 0.00045;
+  camera.position.x = Math.sin(ang) * 0.7;
+  camera.position.y = Math.cos(ang * 0.7) * 0.3;
   camera.lookAt(0, 0, 0);
 
   if (Pointer.active) {
     Pointer.screenX += (Pointer.targetScreenX - Pointer.screenX) * 0.35;
     Pointer.screenY += (Pointer.targetScreenY - Pointer.screenY) * 0.35;
-
-    update3DPointerExact(Pointer.screenX, Pointer.screenY);
+    updateExactRaycast(Pointer.screenX, Pointer.screenY);
 
     handPointer.style.display = 'block';
     handPointer.style.left = `${Pointer.screenX}px`;
     handPointer.style.top = `${Pointer.screenY}px`;
-    handPointer.style.borderColor = LETTER_PALETTES[currentLetterIndex].hex;
   } else {
     handPointer.style.display = 'none';
   }
 
-  renderSwipeTrail();
+  renderHeartTrail();
 
-  particleSystem.rotation.y = Math.sin(frameCount * 0.0008) * 0.08;
+  // Heartbeat pulse calculation when displaying ❤️
+  let heartScale = 1.0;
+  if (ITEMS[currentIndex] === '❤️') {
+    const beat = Math.sin(frame * 0.09) * Math.sin(frame * 0.045);
+    heartScale = 1.0 + Math.max(0, beat) * 0.09;
+  }
 
-  const posArr = geometry.attributes.position.array;
-  const colArr = geometry.attributes.color.array;
-  const sizeArr = geometry.attributes.size.array;
-
-  const px = Pointer.pos3D.x;
-  const py = Pointer.pos3D.y;
-  const pz = Pointer.pos3D.z;
-  const isPointerActive = Pointer.active;
-  const repelForce = 0.35 * Pointer.repelStrength;
+  const pos = geometry.attributes.position.array;
+  const col = geometry.attributes.color.array;
 
   for (let i = 0; i < TOTAL_PARTICLES; i++) {
     const i3 = i * 3;
+    const tx = currentTargets[i3] * heartScale;
+    const ty = currentTargets[i3 + 1] * heartScale;
+    const tz = currentTargets[i3 + 2] * heartScale;
 
-    const flutterX = Math.sin(frameCount * 0.015 + i * 0.06) * 0.006;
-    const flutterY = Math.cos(frameCount * 0.018 + i * 0.05) * 0.006;
+    velocities[i3]     += (tx - pos[i3])     * LERP;
+    velocities[i3 + 1] += (ty - pos[i3 + 1]) * LERP;
+    velocities[i3 + 2] += (tz - pos[i3 + 2]) * LERP;
 
-    velocities[i3]     += (currentTargets[i3]     + flutterX - posArr[i3])     * LERP_SPEED;
-    velocities[i3 + 1] += (currentTargets[i3 + 1] + flutterY - posArr[i3 + 1]) * LERP_SPEED;
-    velocities[i3 + 2] += (currentTargets[i3 + 2]            - posArr[i3 + 2]) * LERP_SPEED;
-
-    if (isPointerActive) {
-      const dx = posArr[i3]     - px;
-      const dy = posArr[i3 + 1] - py;
-      const dz = posArr[i3 + 2] - pz;
-      const distSq = dx * dx + dy * dy + dz * dz;
-
-      if (distSq < REPEL_RADIUS * REPEL_RADIUS) {
-        const dist = Math.sqrt(distSq) + 0.0001;
-        const push = ((REPEL_RADIUS - dist) / REPEL_RADIUS) * repelForce;
-        velocities[i3]     += (dx / dist) * push;
-        velocities[i3 + 1] += (dy / dist) * push;
-        velocities[i3 + 2] += (dz / dist) * push;
+    if (Pointer.active) {
+      const dx = pos[i3]     - Pointer.pos3D.x;
+      const dy = pos[i3 + 1] - Pointer.pos3D.y;
+      const dz = pos[i3 + 2] - Pointer.pos3D.z;
+      const d2 = dx*dx + dy*dy + dz*dz;
+      if (d2 < REPEL * REPEL) {
+        const d = Math.sqrt(d2) + 0.001;
+        const push = ((REPEL - d) / REPEL) * 0.35;
+        velocities[i3]     += (dx / d) * push;
+        velocities[i3 + 1] += (dy / d) * push;
+        velocities[i3 + 2] += (dz / d) * push;
       }
     }
 
-    velocities[i3]     *= FRICTION;
-    velocities[i3 + 1] *= FRICTION;
-    velocities[i3 + 2] *= FRICTION;
+    velocities[i3]     *= FRIC;
+    velocities[i3 + 1] *= FRIC;
+    velocities[i3 + 2] *= FRIC;
 
-    posArr[i3]     += velocities[i3];
-    posArr[i3 + 1] += velocities[i3 + 1];
-    posArr[i3 + 2] += velocities[i3 + 2];
-
-    const spdSq = velocities[i3] * velocities[i3] + velocities[i3 + 1] * velocities[i3 + 1] + velocities[i3 + 2] * velocities[i3 + 2];
-    if (spdSq > 0.003) {
-      const boost = Math.min(Math.sqrt(spdSq) * 4.2, 1.0);
-      colArr[i3]     = Math.min(1.0, baseColors[i3]     + boost * 0.85);
-      colArr[i3 + 1] = Math.min(1.0, baseColors[i3 + 1] + boost * 0.85);
-      colArr[i3 + 2] = Math.min(1.0, baseColors[i3 + 2] + boost * 0.85);
-      sizeArr[i]     = Math.min(2.5, 0.8 + boost * 2.2);
-    } else {
-      colArr[i3]     = baseColors[i3];
-      colArr[i3 + 1] = baseColors[i3 + 1];
-      colArr[i3 + 2] = baseColors[i3 + 2];
-      sizeArr[i]     = Math.max(0.35, sizeArr[i] * 0.98);
-    }
+    pos[i3]     += velocities[i3];
+    pos[i3 + 1] += velocities[i3 + 1];
+    pos[i3 + 2] += velocities[i3 + 2];
   }
 
   geometry.attributes.position.needsUpdate = true;
   geometry.attributes.color.needsUpdate = true;
-  geometry.attributes.size.needsUpdate = true;
 
   renderer.render(scene, camera);
 }
 
 // Bootstrap
-const bootSequence = [
-  { pct: 15, msg: 'BOOTING QUANTUM MATRIX...' },
-  { pct: 30, msg: 'CALIBRATING K — ELECTRIC CYAN...' },
-  { pct: 45, msg: 'SYNTHESIZING H — AMETHYST VIOLET...' },
-  { pct: 60, msg: 'GENERATING U — SUNSET CORAL...' },
-  { pct: 75, msg: 'ALIGNED S — SOLAR GOLD...' },
-  { pct: 88, msg: 'EXPANDING H — ORCHID MAGENTA...' },
-  { pct: 95, msg: 'COMPOSING I — EMERALD MINT...' },
-  { pct: 100, msg: 'QUANTUM SYSTEM READY' }
-];
+setIndex(0, null);
+animate();
 
-let bootIndex = 0;
-function runBootSequence() {
-  if (bootIndex >= bootSequence.length) return;
-  const step = bootSequence[bootIndex++];
-  loaderBar.style.width = `${step.pct}%`;
-  loaderStatus.textContent = step.msg;
-
-  if (bootIndex < bootSequence.length) {
-    setTimeout(runBootSequence, 200 + Math.random() * 150);
-  } else {
+let pct = 0;
+const bootTimer = setInterval(() => {
+  pct += 25;
+  loaderBar.style.width = `${pct}%`;
+  if (pct >= 100) {
+    clearInterval(bootTimer);
     setTimeout(() => {
       loadingScreen.classList.add('fade-out');
-      setTimeout(() => {
-        loadingScreen.style.display = 'none';
-      }, 800);
-    }, 450);
+      setTimeout(() => loadingScreen.style.display = 'none', 800);
+      initMediaPipe();
+    }, 400);
   }
-}
-
-setLetter(0, null);
-animate(performance.now());
-runBootSequence();
-
-setTimeout(() => {
-  initMediaPipe();
-}, 600);
+}, 250);
 </script>
 </body>
 </html>
